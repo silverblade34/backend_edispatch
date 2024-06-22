@@ -1,9 +1,7 @@
 package com.example.backend_edispatch.controller;
 
 import com.example.backend_edispatch.model.entity.Master;
-import com.example.backend_edispatch.model.entity.User;
 import com.example.backend_edispatch.service.MasterService;
-import com.example.backend_edispatch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,13 +17,11 @@ public class MasterController {
     private MasterService masterService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     public ResponseEntity<List<Master>> getAllMasters() {
         return ResponseEntity.ok(masterService.getAllMasters());
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     public ResponseEntity<Master> createMaster(@RequestBody Master master) {
         return ResponseEntity.ok(masterService.createMaster(master));
     }
